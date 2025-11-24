@@ -1,4 +1,4 @@
-# 🏋️ GymBuddy - Personalized Fitness Platform
+# GymBuddy - Personalized Fitness Platform
 
 **GymBuddy** is a full-stack web application that provides personalized workout routines, diet plans, and supplement recommendations based on your fitness level.
 
