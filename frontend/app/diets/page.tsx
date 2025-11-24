@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import './styles.css';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
 interface ContentItem {
   id: number;
   title: string;
@@ -49,7 +51,7 @@ export default function DietsPage() {
   const loadContent = async (fitnessLevel: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/content/diet?fitness_level=${fitnessLevel}`);
+      const response = await fetch(`${API_URL}/api/content/diet?fitness_level=${fitnessLevel}`);
       const data = await response.json();
       setItems(data.content || []);
     } catch (error) {
@@ -150,7 +152,7 @@ export default function DietsPage() {
           {filteredItems.map((item) => (
             <div key={item.id} className="content-card">
               <div className="card-image-wrapper">
-                <img src={item.image_url} alt={item.title} className="card-image" />
+                <img src={`/images/diets${item.fitness_level.charAt(0).toUpperCase() + item.fitness_level.slice(1)}.png`} alt={item.title} className="card-image" />
                 <div className="card-image-overlay diets-overlay" />
 
                 <div className="card-badges">
