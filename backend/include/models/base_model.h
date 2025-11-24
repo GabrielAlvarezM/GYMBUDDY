@@ -7,7 +7,7 @@
 #include <memory>
 #include <iostream>
 
-// Abstract base class for models to enforce ORM-like structure
+
 class BaseModel {
 protected:
     pqxx::connection& conn;
@@ -15,9 +15,6 @@ protected:
 public:
     BaseModel(pqxx::connection& c) : conn(c) {}
     virtual ~BaseModel() = default;
-
-    // Common interface for models could go here
-    // For now, it serves as a common base for dependency injection and structure
 };
 
 #endif

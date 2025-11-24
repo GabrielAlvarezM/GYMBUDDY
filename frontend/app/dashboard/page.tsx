@@ -54,7 +54,7 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-container">
-      {/* Header */}
+ 
       <div className="dashboard-header">
         <div className="dashboard-header-content">
           <h1 className="dashboard-logo">
@@ -73,7 +73,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* 3 Columnas */}
+
       <div className="dashboard-columns">
         {categories.map((category) => (
           <div
@@ -83,17 +83,17 @@ export default function DashboardPage() {
             onMouseLeave={() => setHoveredCategory(null)}
             onClick={() => router.push(category.path)}
           >
-            {/* Imagen */}
+
             <img
               src={category.image}
               alt={category.title}
               className="column-image"
             />
 
-            {/* Overlay */}
+            
             <div className={`column-overlay overlay-${category.id}`} />
 
-            {/* Contenido */}
+           
             <div className="column-content">
               <div className="column-text">
                 <h2 className="column-title">{category.title}</h2>
@@ -105,7 +105,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Borde en hover */}
+           
             <div className="column-border" />
           </div>
         ))}

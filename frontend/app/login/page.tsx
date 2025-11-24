@@ -30,7 +30,7 @@ export default function LoginPage() {
   return (
     <div className="auth-background">
       <div className="auth-shell">
-        {/* Hero Column */}
+
         <div className="auth-hero">
           <div>
             <div className="auth-hero-badge">
@@ -55,7 +55,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Form Column */}
+
         <div className="auth-form-container">
           <div className="mb-6">
             <p className="text-xs font-semibold text-blue-400 mb-2 tracking-wide uppercase">

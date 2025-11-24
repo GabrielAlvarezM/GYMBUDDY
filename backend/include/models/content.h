@@ -8,7 +8,7 @@
 
 struct Content {
     int id;
-    std::string type; // Not in DB, populated manually
+    std::string type; 
     std::string title;
     std::string description;
     std::string fitness_level;

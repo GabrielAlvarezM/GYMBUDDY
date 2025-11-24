@@ -15,7 +15,7 @@ RUN apt-get update \
 
 WORKDIR /app
 
-# Copiamos todo el backend
+# Backend
 COPY . .
 
 # Build

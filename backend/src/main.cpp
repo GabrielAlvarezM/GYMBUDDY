@@ -9,7 +9,7 @@
 #include "controllers/content_controller.h"
 
 int main() {
-    // Variables de entorno (con defaults para desarrollo)
+    // Variables de entorno 
     const char* db_host = std::getenv("DB_HOST");
     const char* db_port = std::getenv("DB_PORT");
     const char* db_name = std::getenv("DB_NAME");
@@ -31,7 +31,7 @@ int main() {
 
     crow::App<crow::CORSHandler> app;
 
-    // CORS (permitimos acceso desde cualquier origen para pruebas)
+
     auto& cors = app.get_middleware<crow::CORSHandler>();
     cors.global()
         .origin("*")
