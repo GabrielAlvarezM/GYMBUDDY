@@ -1,0 +1,64 @@
+Testing: 
+docker-compose down; Remove-Item -Path "C:\Users\gabos\Desktop\gymbuddy\frontend\.next" -Recurse -Force -ErrorAction SilentlyContinue; docker-compose build frontend --no-cache; docker-compose up -d
+
+docker exec -it gymbuddy-db psql -U gymbuddy_user -d gymbuddy_db
+psql (15.15)
+
+gymbuddy_db=# SELECT username, email, fitness_level FROM users;
+
+# 1. Levantar toda la aplicación
+docker-compose up -d --build
+docker-compose restart backend
+docker-compose restart frontend
+
+docker-compose restart
+
+
+
+despues de cambios:
+
+docker-compose build
+docker-compose build --no-cache  (si cambio el codigoo)
+docker-compose up -d
+lo mismo que: docker-compose up -d --build
+
+
+# 2. Ver logs de un servicio específico
+docker-compose logs -f backend
+docker-compose logs -f frontend
+docker-compose logs -f postgres
+
+# 3. Acceder a la aplicación
+# Frontend: http://localhost:3000
+# pgAdmin: http://localhost:8080 (admin@gymbuddy.com / admin)
+
+# 4. Para detener todo
+docker-compose down
+
+# 5. Para detener y borrar volúmenes (limpiar datos)
+docker-compose down -v
+
+# 6. Para reiniciar un servicio específico
+docker-compose restart backend
+
+database: 
+General tab: "GymBuddy"
+Connection tab:
+Host: localhost
+Port: 5432
+Maintenance database: gymbuddy_db
+Username: gymbuddy_user
+Password: root
+
+
+curl http://localhost:3001/health
+# Register new user
+curl -X POST http://localhost:3001/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","email":"test@test.com","password":"test123","fitness_level":"beginner"}'
+# Login
+curl -X POST http://localhost:3001/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","password":"test123"}'
+# Get workouts
+curl "http://localhost:3001/api/content/workouts?fitness_level=beginner"

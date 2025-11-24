@@ -1,0 +1,698 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 overflow-x-hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-blue-600 to-violet-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-blue-500 to-violet-500;
+}
+
+/* ==================== DESIGN SYSTEM ==================== */
+
+/* Glass Effects */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+/* Buttons */
+.btn-primary {
+  @apply w-full bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply w-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/50 text-slate-200 font-medium py-3.5 px-6 rounded-xl transition-all duration-300 hover:border-slate-600/50;
+}
+
+.btn-icon {
+  @apply p-2.5 rounded-lg bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/50 transition-all duration-200 hover:border-slate-600/50;
+}
+
+/* Inputs */
+.input-premium {
+  @apply w-full bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 text-white placeholder:text-slate-500 px-4 py-3.5 rounded-xl text-sm font-medium focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200;
+}
+
+/* Container */
+.container-responsive {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Text Utilities */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400;
+}
+
+.text-gradient-warm {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-rose-400 to-pink-400;
+}
+
+.text-gradient-green {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 1000px 100%;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-slate-800/50 animate-pulse rounded;
+}
+
+/* Category Colors */
+.category-workout {
+  @apply from-blue-600 to-cyan-600;
+}
+
+.category-diet {
+  @apply from-emerald-600 to-teal-600;
+}
+
+.category-supplement {
+  @apply from-violet-600 to-purple-600;
+}
+
+/* ==================== AUTH PAGES ==================== */
+
+.auth-background {
+  @apply min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center px-4 py-8;
+}
+
+.auth-shell {
+  @apply w-full max-w-5xl bg-slate-900/80 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .auth-shell {
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    max-height: 90vh;
+  }
+}
+
+.auth-hero {
+  @apply hidden md:flex md:flex-col justify-between bg-gradient-to-b from-blue-500/80 to-violet-600/80 p-8 text-white;
+}
+
+.auth-hero-title {
+  @apply text-3xl font-bold mb-3;
+}
+
+.auth-hero-text {
+  @apply text-sm text-blue-50/90;
+}
+
+.auth-hero-badge {
+  @apply inline-flex items-center gap-2 text-xs font-semibold bg-white/10 px-3 py-1 rounded-full mb-4;
+}
+
+.auth-form-container {
+  @apply p-8 md:p-10 bg-slate-950/80 text-slate-100 flex flex-col justify-center;
+}
+
+.auth-title {
+  @apply text-2xl md:text-3xl font-bold mb-2 text-slate-100;
+}
+
+.auth-subtitle {
+  @apply text-sm text-slate-400 mb-6;
+}
+
+.btn-secondary {
+  @apply w-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/50 text-slate-200 font-medium py-3.5 px-6 rounded-xl transition-all duration-300 hover:border-slate-600/50;
+}
+
+.btn-icon {
+  @apply p-2.5 rounded-lg bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:bg-slate-700/50 transition-all duration-200 hover:border-slate-600/50;
+}
+
+/* Inputs */
+.input-premium {
+  @apply w-full bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 text-white placeholder:text-slate-500 px-4 py-3.5 rounded-xl text-sm font-medium focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200;
+}
+
+/* Container */
+.container-responsive {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Text Utilities */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400;
+}
+
+.text-gradient-warm {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-rose-400 to-pink-400;
+}
+
+.text-gradient-green {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 1000px 100%;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-slate-800/50 animate-pulse rounded;
+}
+
+/* Category Colors */
+.category-workout {
+  @apply from-blue-600 to-cyan-600;
+}
+
+.category-diet {
+  @apply from-emerald-600 to-teal-600;
+}
+
+.category-supplement {
+  @apply from-violet-600 to-purple-600;
+}
+
+/* ==================== AUTH PAGES ==================== */
+
+.auth-background {
+  @apply min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center px-4 py-8;
+}
+
+.auth-shell {
+  @apply w-full max-w-5xl bg-slate-900/80 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .auth-shell {
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    max-height: 90vh;
+  }
+}
+
+.auth-hero {
+  @apply hidden md:flex md:flex-col justify-between bg-gradient-to-b from-blue-500/80 to-violet-600/80 p-8 text-white;
+}
+
+.auth-hero-title {
+  @apply text-3xl font-bold mb-3;
+}
+
+.auth-hero-text {
+  @apply text-sm text-blue-50/90;
+}
+
+.auth-hero-badge {
+  @apply inline-flex items-center gap-2 text-xs font-semibold bg-white/10 px-3 py-1 rounded-full mb-4;
+}
+
+.auth-form-container {
+  @apply p-8 md:p-10 bg-slate-950/80 text-slate-100 flex flex-col justify-center;
+}
+
+.auth-title {
+  @apply text-2xl md:text-3xl font-bold mb-2 text-slate-100;
+}
+
+.auth-subtitle {
+  @apply text-sm text-slate-400 mb-6;
+}
+
+.auth-label {
+  @apply block text-xs font-semibold text-slate-300 mb-1 uppercase tracking-wide;
+}
+
+.auth-input {
+  @apply w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.auth-primary-button {
+  @apply w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors;
+}
+
+.auth-secondary-button {
+  @apply w-full bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold py-2.5 rounded-xl text-sm transition-colors;
+}
+
+/* ==================== RESPONSIVE MEDIA QUERIES ==================== */
+
+/* Mobile First - Base styles above are for mobile */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container-responsive {
+    max-width: 540px;
+  }
+
+  .glass-card {
+    padding: 1.25rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .auth-shell {
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    max-height: 90vh;
+  }
+
+  .container-responsive {
+    max-width: 720px;
+  }
+
+  /* Dashboard grid improvements */
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Content grids (workouts, diets, supplements) */
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  /* Larger padding for cards on tablets */
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container-responsive {
+    max-width: 960px;
+  }
+
+  /* Dashboard grid - 3 columns on desktop */
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* Content grids - 3 columns on desktop */
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .glass-card {
+    padding: 2rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container-responsive {
+    max-width: 1140px;
+  }
+
+  /* Content grids - can show 4 columns on very large screens */
+  .content-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Extra extra large devices (1400px and up) */
+@media (min-width: 1400px) {
+  .container-responsive {
+    max-width: 1320px;
+  }
+}
+
+/* Mobile-specific optimizations (max-width queries) */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .auth-background {
+    padding: 1rem;
+  }
+
+  .auth-form-container {
+    padding: 1.5rem;
+  }
+
+  .auth-title {
+    font-size: 1.5rem;
+  }
+
+  .auth-subtitle {
+    font-size: 0.875rem;
+  }
+
+  /* Stack dashboard cards on mobile */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Smaller buttons on mobile */
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Reduce padding for mobile */
+  .glass-card {
+    padding: 1rem;
+  }
+
+  /* Smaller text on mobile */
+  body {
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablet-specific (between mobile and desktop) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Landscape phone optimization */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .auth-shell {
+    max-height: none;
+  }
+
+  .auth-hero {
+    display: none;
+  }
+
+  .auth-form-container {
+    padding: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+
+  .auth-hero,
+  .btn-primary,
+  .btn-secondary {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .glass-card {
+    border: 1px solid #ccc;
+    background: white;
+    box-shadow: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-card {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .auth-input {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support (in case user prefers light mode) */
+@media (prefers-color-scheme: light) {
+  /* Currently the app is dark-only, but this is where light mode would go */
+}
